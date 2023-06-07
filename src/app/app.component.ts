@@ -29,12 +29,23 @@ import {
       transition('hide => show', [
         animate('1s')
       ])
+    ]),
+    trigger('openCloseSidenav',[
+      state('open',style({
+        right:"0px"
+      })),
+      state('closed', style({
+        right:"-300px"
+      })),
+      transition("open =>closed", [animate('1s ease-in')]),
+      transition("closed =>open", [animate('1s ease-in')])
     ])
   ]
 })
 export class AppComponent {
   title = 'angular-animations';
   isShow = true;
+  isSidedebarOpen=false;
 
   showHide(){
     this.isShow=!this.isShow;
@@ -46,5 +57,9 @@ export class AppComponent {
       document.getElementById('simo')?.classList.add('show');
       document.getElementById('simo')?.classList.remove('hide');
     }
+  }
+
+  showSidebar(){
+    this.isSidedebarOpen=!this.isSidedebarOpen;
   }
 }
